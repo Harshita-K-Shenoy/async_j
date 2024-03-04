@@ -6,20 +6,14 @@ const getTodos = async () => {
         throw new Error('Cannot fetch the data');
     }
     const data = await response.json();
-    return data;
+    const content = document.querySelectorAll('li');
+    for (let i = 0; i < 10; i++) {
+        list=data[i];
+        imgs=content[i];
+        imgs.innerHTML =`<img src= ${list["url"]} class="image" alt = ${list["id"]} style="max-width":100%;height:auto">`
+    };
 };
-const content = document.querySelectorAll('li');
 getTodos()
-    .then(data => {
-        console.log('resolved:',data);
-        for (let i = 0; i < 10; i++) {
-            list=data[i];
-            imgs=content[i];
-            imgs.innerHTML =`<img src= ${list["url"]} class="image" alt = ${list["id"]}>`
-        };
-
-    })
-    .catch(err => console.log('rejected:',err.message));
 
 
 
